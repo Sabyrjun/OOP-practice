@@ -15,7 +15,6 @@ public class BookingHotelSystem {
         public String getType() {return type;}
         public double getprice(){return price;}
         public boolean isAvaliable() {return avaliable;}
-    }
     @Override
     public String toString() {
         return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + avaliable + "}";
@@ -36,7 +35,7 @@ class Guest {
 
     public int getId(){return id;}
     public String getFullName(){return id;}
-    public Srting getPhone(){return phone}
+    public Srting getPhone(){return phone;}
 
 
     @Override
