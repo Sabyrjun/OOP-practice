@@ -52,6 +52,35 @@ class Guest{
     }
     public int getId(){return id;}
     public void setId(int id){this.id = id;}
+
+    public String getFullName(){return id;}
+    public void setFullName(String fullName){this.fullName = fullName;}
+
+    public Srting getPhone(){return phone}
+    public void setPhone(String phone){this.phone = phone}
+
+    @Override
+    public String toString(){
+        return "Booking{" + "bookingId=" + bookingId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalPrice() + '}';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
