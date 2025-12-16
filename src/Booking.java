@@ -45,7 +45,7 @@ class Guest {
     }
 }
 
-class Booking{
+class BookingHotelSystem{
     private int bId;
     private Room room;
     private Guest guest;
@@ -62,7 +62,8 @@ class Booking{
         }
         @Override
         public String toString(){
-
+            return "Booking{" + "bookingId=" + bookingId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalPrice() + '}';
+        }
 
 
 
