@@ -11,25 +11,10 @@ public class Booking {
             this.price = price;
             this.avaliable = avaliable;
         }
-        public int getNumber() {
-            return number;
-        }
-        public void setNumber(int number) {
-            this.number;
-        }
-        public String getType() {
-            return type;
-        }
-        public double getPrice() {
-            return price;
-        }
-        public boolean isAvaliable() {
-            return avaliable;
-        }
-        public void setAvaliable(boolean avaliable) {
-            this.avaliable = avaliable
-        }
-        }
+        public int getNumber() {return number;}
+        public String getType() {return type;}
+        public double getprice(){return price;}
+        public boolean isAvaliable() {return avaliable;}
     }
     @Override
     public String toString() {
@@ -49,29 +34,10 @@ class Guest {
         this.phone = phone;
     }
 
-    public int getId(){
-        return id;
-    }
+    public int getId(){return id;}
+    public String getFullName(){return id;}
+    public Srting getPhone(){return phone}
 
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getFullName(){
-        return id;
-    }
-
-    public void setFullName(String fullName){
-        this.fullName = fullName;
-    }
-
-    public Srting getPhone(){
-        return phone
-    }
-
-    public void setPhone(String phone){
-        this.phone = phone
-    }
 
     @Override
     public String toString(){
@@ -91,9 +57,11 @@ class Booking{
         this.guest = guest;
         this.nights = nights;
         }
-        public getTotalcost() {
-
+        public double getTotalcost() {
+            return Room.price() * nights;
         }
+        @Override
+        public String toString(){
 
 
 
