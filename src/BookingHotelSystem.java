@@ -45,7 +45,7 @@ class Booking{
         this.guest = guest;
         this.nights = nights;
         }
-        public double getTotalcost() { return room.price() * nights; }
+        public double getTotalcost() { return room.getprice() * nights; }
         @Override
         public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
