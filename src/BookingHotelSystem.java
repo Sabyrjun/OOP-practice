@@ -49,4 +49,5 @@ class Booking{
         @Override
         public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
+    //проверка
 }
