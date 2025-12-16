@@ -29,8 +29,6 @@ public class Booking {
         public void setAvaliable(boolean avaliable) {
             this.avaliable = avaliable
         }
-        public double calcCost(int nights) {
-            return price * nights;
         }
     }
     @Override
@@ -40,29 +38,71 @@ public class Booking {
 }
 
 
-class Guest{
+class Guest {
     private int id;
     private String fullName;
     private String phone;
 
-    public Guest(int id, String fullName, String phone){
+    public Guest(int id, String fullName, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.phone = phone;
     }
-    public int getId(){return id;}
-    public void setId(int id){this.id = id;}
 
-    public String getFullName(){return id;}
-    public void setFullName(String fullName){this.fullName = fullName;}
+    public int getId(){
+        return id;
+    }
 
-    public Srting getPhone(){return phone}
-    public void setPhone(String phone){this.phone = phone}
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getFullName(){
+        return id;
+    }
+
+    public void setFullName(String fullName){
+        this.fullName = fullName;
+    }
+
+    public Srting getPhone(){
+        return phone
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone
+    }
 
     @Override
     public String toString(){
         return "Booking{" + "bookingId=" + bookingId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalPrice() + '}';
     }
+}
+
+class Booking{
+    private int bId;
+    private Room room;
+    private Guest guest;
+    private int nights;
+
+    public Booking(int bId, Room room, Guest guest, int nights) {
+        this.bId = bId;
+        this.room = room;
+        this.guest = guest;
+        this.nights = nights;
+        }
+        public getTotalcost() {
+
+        }
+
+
+
+
+
+
+    }
+
+
 
 
 
