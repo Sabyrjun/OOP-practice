@@ -1,4 +1,4 @@
-public class Booking {
+public class BookingHotelSystem {
     class Room {
         private int number;
         private String type;
