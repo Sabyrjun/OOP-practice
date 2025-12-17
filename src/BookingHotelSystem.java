@@ -4,7 +4,7 @@ public class BookingHotelSystem {
         private String type;
         private double price;
         private boolean available;
-        public Room(int number, String type, double price, boolean avaliable) {
+        public Room(int number, String type, double price, boolean available) {
             this.number = number;
             this.type = type;
             this.price = price;
