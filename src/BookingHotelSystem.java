@@ -3,19 +3,19 @@ public class BookingHotelSystem {
         private int number;
         private String type;
         private double price;
-        private boolean avaliable;
+        private boolean available;
         public Room(int number, String type, double price, boolean avaliable) {
             this.number = number;
             this.type = type;
             this.price = price;
-            this.avaliable = avaliable;
+            this.available = available;
         }
         public int getNumber() { return number; }
         public String getType() { return type; }
         public double getprice() { return price; }
-        public boolean isAvaliable() { return avaliable; }
+        public boolean isAvaliable() { return available; }
         @Override
-        public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + avaliable + "}"; }
+        public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
     }
 class Guest {
     private int id;
@@ -49,5 +49,4 @@ class Booking{
         @Override
         public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
-    //проверка
 }
