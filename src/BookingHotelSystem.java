@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Comparator;
+
+
 public class BookingHotelSystem {
-    class Room {
+    public static class Room {
         private int number;
         private String type;
         private double price;
@@ -14,6 +20,7 @@ public class BookingHotelSystem {
         public String getType() { return type; }
         public double getprice() { return price; }
         public boolean isAvaliable() { return available; }
+        public void setAvailable(boolean available){this.available = available;}
         @Override
         public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
     }
@@ -30,23 +37,21 @@ class Guest {
     public String getFullName(){ return fullName; }
     public String getPhone(){ return phone; }
     @Override
-    public String toString() {
-        return "Guest{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}";
-    }
+    public String toString() { return "Guest{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
 }
 class Booking{
     private int bId;
     private Room room;
     private Guest guest;
     private int nights;
-    public Booking(int bId, Room room, Guest guest, int nights) {
-        this.bId = bId;
-        this.room = room;
-        this.guest = guest;
-        this.nights = nights;
-        }
-        public double getTotalcost() { return room.getprice() * nights; }
-        @Override
-        public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
+   public Booking (int bId, Room room, Guest guest, int nights){
+       this.bId = bId;
+       this.room = room;
+       this.guest = guest;
+       this.nights = nights;
+   }
+    public double0 getTotalcost(){ return int price * int nights }
+    @Override
+    public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
 }
