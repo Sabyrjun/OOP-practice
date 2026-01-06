@@ -47,15 +47,15 @@ public class Main {
                     String name = scan.nextLine();
 
                     System.out.print("Full name: ");
-                    String name = scan.nextLine();
+                    String fullName = scan.nextLine();
 
                     System.out.print("Phone: ");
                     String phone = scan.nextLine();
 
-                    BookingHotelSystem.Guest guest = new BookingHotelSystem.Guest(id, name, phone);
+                    BookingHotelSystem.Guest guest = new BookingHotelSystem.Guest(id, fullName, phone);
                     system.addGuest(guest);
 
-                    System.out.println("Added: " + name);
+                    System.out.println("Added: " + fullName);
                     break;
                 }
                 case 3:{}
