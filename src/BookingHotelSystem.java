@@ -47,7 +47,7 @@ public static abstract class Person {
         public Guest(int id, String fullName, String phone) {
             super(id, fullName, phone);}
     }
-class Booking{
+public class Booking{
     private int bId;
     private Room room;
     private Guest guest;
