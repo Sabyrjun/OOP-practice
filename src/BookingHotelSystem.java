@@ -47,7 +47,7 @@ public static abstract class Person {
         public Guest(int id, String fullName, String phone) {
             super(id, fullName, phone);}
     }
-public class Booking{
+public static class Booking{
     private int bId;
     private Room room;
     private Guest guest;
@@ -58,7 +58,7 @@ public class Booking{
        this.guest = guest;
        this.nights = nights;
    }
-    public double0 getTotalcost(){ return int price * int nights }
+    public double getTotalcost(){ return room.getprice() * int nights }
     @Override
     public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
