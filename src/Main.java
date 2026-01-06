@@ -55,7 +55,7 @@ public class Main {
                     BookingHotelSystem.Guest guest = new BookingHotelSystem.Guest(id, name, phone);
                     system.addGuest(guest);
 
-                    System.out.println("Added: " + room);
+                    System.out.println("Added: " + name);
                     break;
                 }
                 case 3:{}

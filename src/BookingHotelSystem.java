@@ -49,27 +49,35 @@ public static abstract class Person {
     private int id;
     private String fullName;
     private String phone;
+
     public Person(int id, String fullName, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.phone = phone;
     }
-    public int getId(){ return id; }
-    public String getFullName(){ return fullName; }
-    public String getPhone(){ return phone; };
+
+    public int getId() { return id; }
+    public String getFullName() { return fullName; }
+    public String getPhone() { return phone; }
     public abstract String role();
+
     @Override
-    public String toString() { return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
+    public String toString() {
+        return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}";
+    }
 }
 
     public static class Guest extends Person {
         public Guest(int id, String fullName, String phone) {
-            super(id, fullName, phone);}
+            super(id, fullName, phone);
+        }
+        @Override
+        public String role() {
+            return "Guest";
+        }
     }
-    @Override
-    public String role(){
-        return "Guest";
-    }
+
+
 public static class Booking{
     private int bId;
     private Room room;
