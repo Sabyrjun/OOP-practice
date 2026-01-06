@@ -5,6 +5,8 @@ import java.util.Comparator;
 
 
 public class BookingHotelSystem {
+
+
     public static class Room {
         private int number;
         private String type;
@@ -24,20 +26,21 @@ public class BookingHotelSystem {
         @Override
         public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
     }
-class Guest {
+public static abstract class Person {
     private int id;
     private String fullName;
     private String phone;
-    public Guest(int id, String fullName, String phone) {
+    public Person(int id, String fullName, String phone) {
         this.id = id;
         this.fullName = fullName;
         this.phone = phone;
     }
     public int getId(){ return id; }
     public String getFullName(){ return fullName; }
-    public String getPhone(){ return phone; }
+    public String getPhone(){ return phone;
+    public abstract String Role();
     @Override
-    public String toString() { return "Guest{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
+    public String toString() { return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
 }
 class Booking{
     private int bId;
