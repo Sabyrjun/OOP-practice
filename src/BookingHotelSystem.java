@@ -6,6 +6,25 @@ import java.util.Comparator;
 
 public class BookingHotelSystem {
 
+    private final List<Room> rooms = new ArrayList<>();
+    private final List<Guest> guests = new ArrayList<>();
+    private final List<Booking> bookings = new ArrayList<>();
+
+
+    public void addRoom(Room room){
+        rooms.add(room);}
+
+    public void addGuest(Guest guest){
+        guests.add(guest);}
+
+    public List<Room> getRooms(){
+        return new ArrayList<>(rooms);
+    }
+
+    public List<Booking> getBookings(){
+        return new ArrayList<>(bookings);
+    }
+
 
     public static class Room {
         private int number;
