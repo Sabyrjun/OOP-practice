@@ -34,9 +34,31 @@ public class Main {
 
                     BookingHotelSystem.Room room = new BookingHotelSystem.Room(number, type, price, available);
                     system.addRoom(room);
+
+                    System.out.println("Added: " + room);
+                    break;
                 }
+                case 2:{
+                    System.out.print("Guest id: ");
+                    int id = scan.nextInt();
+                    scan.nextLine();
 
+                    System.out.print("Full name: ");
+                    String name = scan.nextLine();
 
+                    System.out.print("Full name: ");
+                    String name = scan.nextLine();
+
+                    System.out.print("Phone: ");
+                    String phone = scan.nextLine();
+
+                    BookingHotelSystem.Guest guest = new BookingHotelSystem.Guest(id, name, phone);
+                    system.addGuest(guest);
+
+                    System.out.println("Added: " + room);
+                    break;
+                }
+                case 3:{}
 
 
 
