@@ -56,8 +56,8 @@ public static abstract class Person {
     }
     public int getId(){ return id; }
     public String getFullName(){ return fullName; }
-    public String getPhone(){ return phone;
-    public abstract String Role();
+    public String getPhone(){ return phone; };
+    public abstract String role();
     @Override
     public String toString() { return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
 }
@@ -65,6 +65,10 @@ public static abstract class Person {
     public static class Guest extends Person {
         public Guest(int id, String fullName, String phone) {
             super(id, fullName, phone);}
+    }
+    @Override
+    public String role(){
+        return "Guest";
     }
 public static class Booking{
     private int bId;
@@ -77,7 +81,7 @@ public static class Booking{
        this.guest = guest;
        this.nights = nights;
    }
-    public double getTotalcost(){ return room.getprice() * int nights }
+    public double getTotalcost(){ return room.getprice() * nights; }
     @Override
     public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
     }
