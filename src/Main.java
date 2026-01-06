@@ -58,7 +58,26 @@ public class Main {
                     System.out.println("Added: " + fullName);
                     break;
                 }
-                case 3:{}
+                case 3:{
+                    System.out.print("Booking id: ");
+                    int Bid = scan.nextInt();
+                    scan.nextLine();
+
+                    System.out.print("Room number: ");
+                    int roomNumber = scan.nextInt();
+                    scan.nextLine();
+
+                    System.out.print("Guest id: ");
+                    int guestId = scan.nextInt();
+                    scan.nextLine();
+
+                    System.out.print("Nights: ");
+                    int nights = scan.nextInt();
+                    scan.nextLine();
+
+                    BookingHotelSystem.Booking booking = new BookingHotelSystem.Booking(Bid, roomNumber, guestId, nights);
+
+                }
 
 
 

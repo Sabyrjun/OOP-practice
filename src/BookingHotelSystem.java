@@ -81,7 +81,7 @@ public static abstract class Person {
 public static class Booking{
     private int bId;
     private Room room;
-    private Guest guest;
+    private Person guest;
     private int nights;
    public Booking (int bId, Room room, Guest guest, int nights){
        this.bId = bId;
