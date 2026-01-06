@@ -42,6 +42,11 @@ public static abstract class Person {
     @Override
     public String toString() { return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}"; }
 }
+
+    public static class Guest extends Person {
+        public Guest(int id, String fullName, String phone) {
+            super(id, fullName, phone);}
+    }
 class Booking{
     private int bId;
     private Room room;
