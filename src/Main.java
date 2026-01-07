@@ -9,6 +9,7 @@ public class Main {
             System.out.println("Press 1 to add new room");
             System.out.println("Press 2 to add guest");
             System.out.println("Press 3 to create a booking");
+            System.out.println("Press 0 to exit");
 
             int choice = scan.nextInt();
             scan.nextLine();
@@ -43,8 +44,6 @@ public class Main {
                     int id = scan.nextInt();
                     scan.nextLine();
 
-                    System.out.print("Full name: ");
-                    String name = scan.nextLine();
 
                     System.out.print("Full name: ");
                     String fullName = scan.nextLine();
@@ -55,7 +54,7 @@ public class Main {
                     BookingHotelSystem.Guest guest = new BookingHotelSystem.Guest(id, fullName, phone);
                     system.addGuest(guest);
 
-                    System.out.println("Added: " + fullName);
+                    System.out.println("Added: " + guest);
                     break;
                 }
                 case 3:{
@@ -75,7 +74,7 @@ public class Main {
                     int nights = scan.nextInt();
                     scan.nextLine();
 
-                    BookingHotelSystem.Booking booking = new BookingHotelSystem.Booking(Bid, roomNumber, guestId, nights);
+                    BookingHotelSystem.Booking booking = system.createBooking(Bid, roomNumber, guestId, nights);
 
                 }
 

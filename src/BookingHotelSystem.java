@@ -26,6 +26,42 @@ public class BookingHotelSystem {
     }
 
 
+    public Room findRoomByNumber(int number){
+        for (Room i : rooms){
+            if(i.getNumber() == number) return i;
+        }
+        return null;
+    }
+
+    public Guest findGuestById(int id){
+        for (Guest j : guests){
+            if(j.getId() == id) return j;
+        }
+        return null;
+    }
+
+    public Booking createBooking(int Bid, int roomNumber, int guestId, int nights){
+        Room room = findRoomByNumber(roomNumber);
+        Guest guest = findGuestById(guestId);
+
+        if (room == null || guest == null) return null;
+        if (!room.isAvaliable()) return null;
+
+        Booking booking = new Booking(Bid, room, guest, nights);
+        bookings.add(booking);
+        room.setAvailable(false);
+        return booking;
+
+
+    }
+
+
+
+
+
+
+
+
     public static class Room {
         private int number;
         private String type;
