@@ -97,6 +97,22 @@ public class BookingHotelSystem {
         public void setAvailable(boolean available){this.available = available;}
         @Override
         public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
+
+        @Override
+        public boolean equals(Object i){
+            if(this == i) return true;
+            if (!(i instanceof Room)) return false;
+            Room room = (Room) i;
+            return number == room.number;
+        }
+
+        @Override
+        public int hashCode(){
+            return Objects.hash(number);
+        }
+
+
+
     }
 public static abstract class Person {
     private int id;
@@ -117,6 +133,19 @@ public static abstract class Person {
     @Override
     public String toString() {
         return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}";
+    }
+
+    @Override
+    public boolean equals(Object i){
+        if(this == i) return true;
+        if (!(i instanceof Person)) return false;
+        Person person = (Person) i;
+        return id == person.id;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(id);
     }
 }
 
@@ -145,5 +174,19 @@ public static class Booking{
     public double getTotalcost(){ return room.getprice() * nights; }
     @Override
     public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
+
+
+    @Override
+    public boolean equals(Object i){
+        if(this == i) return true;
+        if (!(i instanceof Booking)) return false;
+        Booking booking = (Booking) i;
+        return bId == booking.bId;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(bId);
+    }
     }
 }
