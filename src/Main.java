@@ -77,7 +77,17 @@ public class Main {
                     BookingHotelSystem.Booking booking = system.createBooking(Bid, roomNumber, guestId, nights);
 
                 }
+                case 5: {
+                    System.out.print("Room number to search: ");
+                    int number = scan.nextInt();
+                    scan.nextLine();
 
+                    BookingHotelSystem.Room room = system.findRoomByNumber(number);
+                    System.out.println(room == null ? "Not found." : "Found: " + room);
+                    break;
+                    }
+
+                }
 
 
 
