@@ -82,6 +82,7 @@ public class Main {
                     int number = scan.nextInt();
                     scan.nextLine();
 
+
                     BookingHotelSystem.Room room = system.findRoomByNumber(number);
                     System.out.println(room == null ? "Not found." : "Found: " + room);
                     break;
