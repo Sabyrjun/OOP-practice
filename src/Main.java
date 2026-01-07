@@ -25,7 +25,7 @@ public class Main {
                     int number = scan.nextInt();
                     scan.nextLine();
 
-                    System.out.print("Room type (single/double/triple: ");
+                    System.out.print("Room type (single/double/triple): ");
                     String type = scan.nextLine();
 
                     System.out.print("Price per night: ");
@@ -75,7 +75,11 @@ public class Main {
                     System.out.print("Nights: ");
                     int nights = scan.nextInt();
                     scan.nextLine();
+                    
                     BookingHotelSystem.Booking booking = system.createBooking(Bid, roomNumber, guestId, nights);
+                    if (booking == null) System.out.println("Booking failed (room/guest not found or room NOT available).");
+                    else System.out.println("Created: " + booking);
+                    break;
                 }
                 case 4: {
                     System.out.print("Room number to search: ");

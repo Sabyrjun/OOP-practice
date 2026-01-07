@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 public class BookingHotelSystem {
 
+    // списки
     private final List<Room> rooms = new ArrayList<>();
     private final List<Guest> guests = new ArrayList<>();
     private final List<Booking> bookings = new ArrayList<>();
@@ -25,7 +26,7 @@ public class BookingHotelSystem {
         return new ArrayList<>(bookings);
     }
 
-
+    // поиск
     public Room findRoomByNumber(int number){
         for (Room i : rooms){
             if(i.getNumber() == number) return i;
@@ -40,12 +41,12 @@ public class BookingHotelSystem {
         return null;
     }
 
-
+    // сортировка
     public void sortRoomsByPrice(){
-        rooms.sort(Comparator.comparingDouble(Room::getPrice));
+        rooms.sort(Comparator.comparingDouble(Room :: getPrice));
     }
 
-
+    // фильтр
     public List<Room> filterAvailableByType(String type){
         List<Room> result = new ArrayList<>();
         for (Room i : rooms){
@@ -55,7 +56,6 @@ public class BookingHotelSystem {
         }
         return result;
     }
-
 
     public Booking createBooking(int Bid, int roomNumber, int guestId, int nights){
         Room room = findRoomByNumber(roomNumber);
@@ -68,17 +68,11 @@ public class BookingHotelSystem {
         bookings.add(booking);
         room.setAvailable(false);
         return booking;
-
-
     }
 
+    // классы
 
-
-
-
-
-
-
+    // инкопсуляция
     public static class Room {
         private int number;
         private String type;
@@ -98,6 +92,7 @@ public class BookingHotelSystem {
         @Override
         public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
 
+        // иквал + хэшкод
         @Override
         public boolean equals(Object i){
             if(this == i) return true;
@@ -110,10 +105,8 @@ public class BookingHotelSystem {
         public int hashCode(){
             return Objects.hash(number);
         }
-
-
-
     }
+
 public static abstract class Person {
     private int id;
     private String fullName;
@@ -135,6 +128,7 @@ public static abstract class Person {
         return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}";
     }
 
+    // иквал + хэшкод
     @Override
     public boolean equals(Object i){
         if(this == i) return true;
@@ -153,10 +147,11 @@ public static abstract class Person {
         public Guest(int id, String fullName, String phone) {
             super(id, fullName, phone);
         }
+
         @Override
         public String role() {
             return "Guest";
-        }
+        } // полиморфизм, оно делает в наследник
     }
 
 
@@ -175,7 +170,7 @@ public static class Booking{
     @Override
     public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalCost() + '}'; }
 
-
+    // иквал + хэшкод
     @Override
     public boolean equals(Object i){
         if(this == i) return true;
