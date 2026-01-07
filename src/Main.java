@@ -99,7 +99,7 @@ public class Main {
                     String type = scan.nextLine();
 
                     System.out.println("Available rooms, type = " + type + ": ");
-                    for (BookingHotelSystem.Room i : system.filterAvaliableByType(type)){
+                    for (BookingHotelSystem.Room i : system.filterAvailableByType(type)){
                         System.out.println(i);
                     }
                     break;

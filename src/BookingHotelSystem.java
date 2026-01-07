@@ -42,14 +42,14 @@ public class BookingHotelSystem {
 
 
     public void sortRoomsByPrice(){
-        rooms.sort(Comparator.comparingDouble(Room::getprice));
+        rooms.sort(Comparator.comparingDouble(Room::getPrice));
     }
 
 
-    public List<Room> filterAvaliableByType(String type){
+    public List<Room> filterAvailableByType(String type){
         List<Room> result = new ArrayList<>();
         for (Room i : rooms){
-            if (i.isAvaliable() && i.getType().equalsIgnoreCase(type)){
+            if (i.isAvailable() && i.getType().equalsIgnoreCase(type)){
                 result.add(i);
             }
         }
@@ -62,7 +62,7 @@ public class BookingHotelSystem {
         Guest guest = findGuestById(guestId);
 
         if (room == null || guest == null) return null;
-        if (!room.isAvaliable()) return null;
+        if (!room.isAvailable()) return null;
 
         Booking booking = new Booking(Bid, room, guest, nights);
         bookings.add(booking);
@@ -92,8 +92,8 @@ public class BookingHotelSystem {
         }
         public int getNumber() { return number; }
         public String getType() { return type; }
-        public double getprice() { return price; }
-        public boolean isAvaliable() { return available; }
+        public double getPrice() { return price; }
+        public boolean isAvailable() { return available; }
         public void setAvailable(boolean available){this.available = available;}
         @Override
         public String toString() { return "Room{number=" + number + ", type='" + type + '\'' + ", price per night=" + price + ", avaliable=" + available + "}"; }
@@ -171,9 +171,9 @@ public static class Booking{
        this.guest = guest;
        this.nights = nights;
    }
-    public double getTotalcost(){ return room.getprice() * nights; }
+    public double getTotalCost(){ return room.getPrice() * nights; }
     @Override
-    public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalcost() + '}'; }
+    public String toString(){ return "Booking{bookingId=" + bId + ", room=" + room + ", guest=" + guest + ", nights=" + nights + ", totalPrice=" + getTotalCost() + '}'; }
 
 
     @Override
