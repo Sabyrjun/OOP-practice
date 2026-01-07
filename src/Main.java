@@ -9,6 +9,9 @@ public class Main {
             System.out.println("Press 1 to add new room");
             System.out.println("Press 2 to add guest");
             System.out.println("Press 3 to create a booking");
+            System.out.println("Press 4 to find room by number");
+            System.out.println("Press 5 to sort rooms by price");
+            System.out.println("Press 6 to show available type of room");
             System.out.println("Press 0 to exit");
 
             int choice = scan.nextInt();
