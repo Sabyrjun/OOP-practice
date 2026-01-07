@@ -44,7 +44,6 @@ public class Main {
                     int id = scan.nextInt();
                     scan.nextLine();
 
-
                     System.out.print("Full name: ");
                     String fullName = scan.nextLine();
 
@@ -73,38 +72,39 @@ public class Main {
                     System.out.print("Nights: ");
                     int nights = scan.nextInt();
                     scan.nextLine();
-
                     BookingHotelSystem.Booking booking = system.createBooking(Bid, roomNumber, guestId, nights);
-
                 }
-                case 5: {
+                case 4: {
                     System.out.print("Room number to search: ");
                     int number = scan.nextInt();
                     scan.nextLine();
 
-
                     BookingHotelSystem.Room room = system.findRoomByNumber(number);
                     System.out.println(room == null ? "Not found." : "Found: " + room);
                     break;
-                    }
-
                 }
+                case 5:{
+                    system.sortRoomsByPrice();
+                    System.out.println("Rooms sorted by price: ");
+                    for (BookingHotelSystem.Room i : system.getRooms()){
+                        System.out.println(i);
+                    }
+                    break;
+                }
+                case 6:{
+                    System.out.print("Type for filter: ");
+                    String type = scan.nextLine();
 
-
-
-
-
-
+                    System.out.println("Avaliable rooms, type = " + type + ": ");
+                    for (BookingHotelSystem.Room i : system.filterAvaliableByType(type)){
+                        System.out.println(i);
+                    }
+                    break;
+                }
+                default:
+                    System.out.println("Unknown option. May i get 80% pls? :3");
             }
-
-
-
-
-
-
         }
-
-
-
+        scan.close();
     }
 }

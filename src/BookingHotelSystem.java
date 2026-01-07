@@ -40,6 +40,23 @@ public class BookingHotelSystem {
         return null;
     }
 
+
+    public void sortRoomsByPrice(){
+        rooms.sort(Comparator.comparingDouble(Room::getprice));
+    }
+
+
+    public List<Room> filterAvaliableByType(String type){
+        List<Room> result = new ArrayList<>();
+        for (Room i : rooms){
+            if (i.isAvaliable() && i.getType().equalsIgnoreCase(type)){
+                result.add(i);
+            }
+        }
+        return result;
+    }
+
+
     public Booking createBooking(int Bid, int roomNumber, int guestId, int nights){
         Room room = findRoomByNumber(roomNumber);
         Guest guest = findGuestById(guestId);
