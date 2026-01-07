@@ -98,7 +98,7 @@ public class Main {
                     System.out.print("Type for filter: ");
                     String type = scan.nextLine();
 
-                    System.out.println("Avaliable rooms, type = " + type + ": ");
+                    System.out.println("Available rooms, type = " + type + ": ");
                     for (BookingHotelSystem.Room i : system.filterAvaliableByType(type)){
                         System.out.println(i);
                     }
