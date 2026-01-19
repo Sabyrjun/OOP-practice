@@ -51,7 +51,25 @@ public class BookingHotelSystem {
     }
 
     public List<Room> getRooms(){
-        return new ArrayList<>(rooms);
+       List<Room> rooms = new ArrayList<>();
+       String sql = "SELECT * FROM rooms";
+
+       try (Connection conn = getConnection();
+       Statement stmt = conn.createStatement();
+       ResultSet rs = stmt.executeQuery(sql)){
+           while (rs.next()){
+               Room room = new Room(
+                       rs.getInt("number"),
+                       rs.getString("type"),
+                       rs.getDouble("price"),
+                       rs.getBoolean("available"));
+               rooms.add(room);
+           }
+       }
+       catch (SQLException E){
+           System.out.println("Error reading rooms: " + e.getMessage());
+       }
+       return rooms;
     }
 
     public List<Booking> getBookings(){
