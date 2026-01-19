@@ -66,7 +66,7 @@ public class BookingHotelSystem {
                rooms.add(room);
            }
        }
-       catch (SQLException E){
+       catch (SQLException e){
            System.out.println("Error reading rooms: " + e.getMessage());
        }
        return rooms;
@@ -99,24 +99,51 @@ public class BookingHotelSystem {
     }
 
     public Guest findGuestById(int id){
-        for (Guest j : guests){
-            if(j.getId() == id) return j;
+        String sql = "SELECT * FROM rooms WHERE id = ?";
+        try(Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new Guest(
+                        rs.getInt("id"),
+                        rs.getString("full_name"),
+                        rs.getString("phone")
+                );}
+        }
+        catch (SQLException e) {
+            System.out.println("Error finding guest: " + e.getMessage());
         }
         return null;
     }
 
     // сортировка
     public void sortRoomsByPrice(){
-        rooms.sort(Comparator.comparingDouble(Room :: getPrice));
+        list<Room> list = getRooms();
+        list.sort(Comparator.comparingDouble(Room :: getPrice));
     }
 
     // фильтр
     public List<Room> filterAvailableByType(String type){
-        List<Room> result = new ArrayList<>();
-        for (Room i : rooms){
-            if (i.isAvailable() && i.getType().equalsIgnoreCase(type)){
-                result.add(i);
+        List<Room> rooms = new ArrayList<>();
+        String sql = "SELECT * FROM rooms WHERE rooms type = ? AND available = true";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             stmt.setString(1. type);
+
+             ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                result.add(new Room(
+                        rs.getInt("number"),
+                        rs.getString("type"),
+                        rs.getDouble("price"),
+                        rs.getBoolean("available")));
             }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
         }
         return result;
     }
