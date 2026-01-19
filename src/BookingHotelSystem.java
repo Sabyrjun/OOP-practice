@@ -2,14 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Comparator;
-
+import java.sql.*;
 
 public class BookingHotelSystem {
 
-    // списки
-    private final List<Room> rooms = new ArrayList<>();
-    private final List<Guest> guests = new ArrayList<>();
-    private final List<Booking> bookings = new ArrayList<>();
+    // sql keys
+    private static final String DB_URL = "...";
+    private static final String USER ="...";
+    private static final String PASS = "";
+
+    private Connection getConnection() throws SQLException{
+        return DriverManager.getConnection(DB_URL, USER, PASS);
+    }
+
+
 
 
     public void addRoom(Room room){
