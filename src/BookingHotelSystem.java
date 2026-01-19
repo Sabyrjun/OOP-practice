@@ -16,10 +16,24 @@ public class BookingHotelSystem {
     }
 
 
-
+// новый лист ток в sql
 
     public void addRoom(Room room){
-        rooms.add(room);}
+        String sql = "INSERT INTO rooms (number, type, price, avaliable) VALUES(?, ?, ?, ?)";
+        try(Connection conn = getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, room.getNumber());
+            stmt.setString(2, room.getType());
+            stmt.setDouble(3, room.getPrice());
+            stmt.setBoolean(4, room.isAvailable());
+
+            stmt.executeUpdate();
+            System.out.println("Room saved to Databese!");
+        }
+        catch (SQLException e){
+            System.out.println("Error adding room: " + e.getMessage());
+        }
+    }
 
     public void addGuest(Guest guest){
         guests.add(guest);}
