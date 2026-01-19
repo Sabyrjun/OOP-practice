@@ -118,6 +118,17 @@ public class BookingHotelSystem {
         return null;
     }
 
+
+
+
+
+
+
+
+
+
+
+
     // сортировка
     public void sortRoomsByPrice(){
         list<Room> list = getRooms();
