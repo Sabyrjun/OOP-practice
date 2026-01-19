@@ -35,8 +35,20 @@ public class BookingHotelSystem {
         }
     }
 
-    public void addGuest(Guest guest){
-        guests.add(guest);}
+    public void addGuest(Guest guest) {
+        String sql = "INSERT INTO rooms (id, full_name, phone,) VALUES(?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, guest.getId());
+            stmt.setString(2, guest.getFullName());
+            stmt.setDouble(3, guest.getPhone());
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            System.out.println("Error adding guest: " + e.getMessage());
+        }
+    }
 
     public List<Room> getRooms(){
         return new ArrayList<>(rooms);
