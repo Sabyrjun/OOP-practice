@@ -78,8 +78,22 @@ public class BookingHotelSystem {
 
     // поиск
     public Room findRoomByNumber(int number){
-        for (Room i : rooms){
-            if(i.getNumber() == number) return i;
+        String sql = "SELECT * FROM rooms WHERE number = ?";
+        try(Connection conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, number);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new Room(
+                  rs.getInt("number"),
+                  rs.getString("type"),
+                  rs.getDouble("price"),
+                  rs.getBoolean("available")
+                );}
+            }
+        catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
