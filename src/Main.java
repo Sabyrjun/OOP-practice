@@ -91,7 +91,6 @@ public class Main {
                     break;
                 }
                 case 5:{
-                    system.sortRoomsByPrice();
                     System.out.println("Rooms sorted by price: ");
                     for (BookingHotelSystem.Room i : system.getRooms()){
                         System.out.println(i);
