@@ -9,7 +9,7 @@ public class BookingHotelSystem {
     // sql keys
     private static final String DB_URL = "...";
     private static final String USER ="...";
-    private static final String PASS = "";
+    private static final String PASS = "...";
 
     private Connection getConnection() throws SQLException{
         return DriverManager.getConnection(DB_URL, USER, PASS);
@@ -166,10 +166,10 @@ public class BookingHotelSystem {
         if (room == null || guest == null) return null;
         if (!room.isAvailable()) return null;
 
-        Booking booking = new Booking(Bid, room, guest, nights);
-        bookings.add(booking);
+        updateRoomAvailability(roomNumber, false);
         room.setAvailable(false);
-        return booking;
+        Guest tempGuest = new Guest(guestId, "DB Guest", "000");
+        return new Booking(Bid, room, tempGuest, nights);
     }
 
     // классы
