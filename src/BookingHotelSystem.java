@@ -36,14 +36,14 @@ public class BookingHotelSystem {
 
 
     public void addGuest(Guest guest) {
-        String sql = "INSERT INTO guests (id, fullName, phone) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO guests (id, fullName, phone, city) VALUES(?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, guest.getId());
             stmt.setString(2, guest.getFullName());
             stmt.setString(3, guest.getPhone());
-
+            stmt.setString(4, guest.getCity());
             stmt.executeUpdate();
             System.out.println("Guest saved!");
         }
@@ -112,7 +112,8 @@ public class BookingHotelSystem {
                 return new Guest(
                         rs.getInt("id"),
                         rs.getString("fullName"),
-                        rs.getString("phone")
+                        rs.getString("phone"),
+                        rs.getString("city")
                 );
             }
         }
@@ -172,32 +173,87 @@ public class BookingHotelSystem {
         Room room = findRoomByNumber(roomNumber);
         Guest guest = findGuestById(guestId);
 
-        if (room == null || guest == null) return null;
-        if (!room.isAvailable()) return null;
+        if (room == null || guest == null || !room.isAvailable()) return null;
 
         try (Connection conn = getConnection()) {
-            updateRoomAvailability(roomNumber, false);
+            conn.setAutoCommit(false);
 
-            String sql = "INSERT INTO bookings (bId, roomNumber, guestId, nights) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setInt(1, Bid);
-                stmt.setInt(2, roomNumber);
-                stmt.setInt(3, guestId);
-                stmt.setInt(4, nights);
+            try {
+                String updateSql = "UPDATE rooms SET available = false WHERE number = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(updateSql)) {
+                    pstmt.setInt(1, roomNumber);
+                    pstmt.executeUpdate();
+                }
 
-                stmt.executeUpdate();
-                System.out.println("Booking saved with bId: " + Bid);
+                String insertSql = "INSERT INTO bookings (bId, roomNumber, guestId, nights) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
+                    pstmt.setInt(1, Bid);
+                    pstmt.setInt(2, roomNumber);
+                    pstmt.setInt(3, guestId);
+                    pstmt.setInt(4, nights);
+                    pstmt.executeUpdate();
+                }
+
+                conn.commit();
+                System.out.println("Booking and Room update successful!");
+
+                room.setAvailable(false);
+                return new Booking(Bid, room, guest, nights);
+
+            } catch (SQLException e) {
+                conn.rollback();
+                System.out.println("Transaction failed, rolling back: " + e.getMessage());
+                return null;
             }
-        }
-        catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Database connection error: " + e.getMessage());
             return null;
         }
-
-        room.setAvailable(false);
-        return new Booking(Bid, room, guest, nights);
     }
 
+    public void deleteRoom(int number) {
+        String sql = "DELETE FROM rooms WHERE number = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, number);
+            stmt.executeUpdate();
+            System.out.println("Room " + number + " deleted.");
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void updateRoomPrice(int number, double newPrice) {
+        String sql = "UPDATE rooms SET price = ? WHERE number = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDouble(1, newPrice);
+            stmt.setInt(2, number);
+            stmt.executeUpdate();
+            System.out.println("Price for Room " + number + " updated to " + newPrice);
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void updateGuestPhone(int id, String newPhone) {
+        String sql = "UPDATE guests SET phone = ? WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newPhone);
+            stmt.setInt(2, id);
+
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Guest phone updated successfully!");
+            } else {
+                System.out.println("Guest ID not found.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating guest: " + e.getMessage());
+        }
+    }
 
 
 
@@ -312,21 +368,24 @@ public class BookingHotelSystem {
         private int id;
         private String fullName;
         private String phone;
+        private String city;
 
-        public Person(int id, String fullName, String phone) {
+        public Person(int id, String fullName, String phone, String city) {
             this.id = id;
             this.fullName = fullName;
             this.phone = phone;
+            this.city = city;
         }
 
         public int getId() { return id; }
         public String getFullName() { return fullName; }
         public String getPhone() { return phone; }
+        public String getCity() { return city; }
         public abstract String role();
 
         @Override
         public String toString() {
-            return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + "}";
+            return role() + "{id=" + id + ", fullName='" + fullName + '\'' + ", phone='" + phone + '\'' + ", city='" + city + '\'' +"}";
         }
 
         @Override
@@ -344,8 +403,8 @@ public class BookingHotelSystem {
     }
 
     public static class Guest extends Person {
-        public Guest(int id, String fullName, String phone) {
-            super(id, fullName, phone);
+        public Guest(int id, String fullName, String phone, String city) {
+            super(id, fullName, phone, city);
         }
 
         @Override
